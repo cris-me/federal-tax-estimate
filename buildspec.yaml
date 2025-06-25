@@ -1,0 +1,34 @@
+# maven BuildSpec
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+  pre_build:
+    commands:
+      - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      - chmod +x kubectl
+      - mv kubectl /usr/local/bin/
+      - aws eks update-kubeconfig --name nexgen-eks-cluster
+      - DOCKER_PASSWORD=$(aws ssm get-parameter --with-decryption --name "docker_token" --query "Parameter.Value" --output text)
+      - echo $DOCKER_PASSWORD | docker login -u bjgomes --password-stdin
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Building the project...
+      - mvn clean install
+      - echo Finished the build phase.
+  post_build:
+    commands:
+      - mv target/*.jar target/app.jar
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 924809052459.dkr.ecr.us-east-1.amazonaws.com
+      - docker build -t tax_estimator .
+      - docker tag tax_estimator:latest 924809052459.dkr.ecr.us-east-1.amazonaws.com/tax_estimator:latest
+      - docker push 924809052459.dkr.ecr.us-east-1.amazonaws.com/tax_estimator:latest
+      - kubectl apply -f manifest.yaml
+      - kubectl rollout restart deployment tax-estimator
+      - echo Finished the post_build phase.
+
+
