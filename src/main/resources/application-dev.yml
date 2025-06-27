@@ -1,0 +1,19 @@
+# port config for gateway
+server:
+    port: 8082
+
+spring:
+    data:
+        mongodb:
+                uri: ${MONGO_URI}
+                database: tax-estimate
+    mvc:
+        pathmatch:
+            matching-strategy: ANT_PATH_MATCHER
+
+    output:
+        ansi:
+            enabled: ALWAYS
+
+    application:
+        name: tax-service         # used as the id in the gateway routes
