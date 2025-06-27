@@ -1,6 +1,7 @@
 package com.melendez.backendtaxes.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -10,15 +11,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Income Sources")
-public class IncomeSource {
-
+@Document(collection = "Users")
+public class User {
     @Id
     private String id;
-    private String userId;
-    private int year;
-    private String employer;
-    private String incomeType;
-    private int income;
-    private int taxWithheld;
+    @Indexed(unique = true)
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String filingStatus;
+    private int childDependents;
 }
