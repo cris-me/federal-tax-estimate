@@ -23,4 +23,9 @@ public class UserController {
     public ResponseEntity<User> getOneUserByPath(@PathVariable String email) {
         return usersService.getOneUser(email).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/health")
+    public ResponseEntity<String> checkHealth() {
+        return ResponseEntity.ok("OK");
+    }
 }

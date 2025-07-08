@@ -1,6 +1,6 @@
 # port config for gateway
 server:
-    port: 8082
+    port: 8080
 
 spring:
     data:
@@ -14,6 +14,3 @@ spring:
     output:
         ansi:
             enabled: ALWAYS
-
-    application:
-        name: tax-service         # used as the id in the gateway routes
