@@ -14,7 +14,7 @@ management:
 spring:
     data:
         mongodb:
-                uri: REPLACED
+                uri: ${MONGO_URI}
                 database: tax-estimate
     mvc:
         pathmatch:
