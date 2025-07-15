@@ -30,7 +30,6 @@ public class TaxEstimateController {
     public ResponseEntity<TaxReturn> createReturn(@RequestParam String email, @RequestParam int year) {
         TaxReturn taxReturn = taxEstimateService.saveTaxReturn(email, year);
         return ResponseEntity.ok(taxReturn);
-
     }
 
 }

@@ -1,11 +1,20 @@
 # port config for gateway
 server:
-    port: 8080
+    port: 5000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
 
 spring:
     data:
         mongodb:
-                uri: ${MONGO_URI}
+                uri: REPLACED
                 database: tax-estimate
     mvc:
         pathmatch:

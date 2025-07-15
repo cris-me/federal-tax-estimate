@@ -39,6 +39,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -53,7 +68,8 @@
 				<version>0.8.10</version>
 				<configuration>
 					<excludes>
-						<exclude>**/BackendTaxesApplication.class</exclude> <!-- adjust based on your package -->
+						<exclude>**/BackendTaxesApplication.class</exclude> <!-- adjust based on your
+						package -->
 					</excludes>
 				</configuration>
 				<executions>
