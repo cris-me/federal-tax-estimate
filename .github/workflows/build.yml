@@ -19,4 +19,4 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: ./mvnw clean verify -DskipTests
+        run: ./mvnw clean verify
